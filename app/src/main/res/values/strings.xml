@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TravellerApp</string>
+
+    <!-- Login Strings -->
+    <string name="email_hint">email</string>
+    <string name="password_hint">password</string>
+    <string name="signin_button">Sign In</string>
+    <string name="signup_link">Sign Up</string>
+
+
+</resources>
