@@ -19,5 +19,7 @@
     <string name="user_duplicate">Username taken!</string>
     <string name="user_created">User created successfully!</string>
 
+    <!-- Main -->
+
 
 </resources>

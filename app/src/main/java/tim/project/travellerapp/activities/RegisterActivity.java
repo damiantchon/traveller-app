@@ -17,10 +17,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
-import tim.project.travellerapp.clients.UserClient;
+import tim.project.travellerapp.clients.ApiClient;
 import tim.project.travellerapp.models.User;
 
-import static tim.project.travellerapp.Constants.REST_API_ADDRESS;
 
 public class RegisterActivity extends Activity {
 
@@ -63,12 +62,12 @@ public class RegisterActivity extends Activity {
 
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(REST_API_ADDRESS)
+                .baseUrl(Constants.REST_API_ADDRESS)
                 .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.build();
 
-        UserClient client = retrofit.create(UserClient.class);
+        ApiClient client = retrofit.create(ApiClient.class);
 
         Call<Void> call = client.createAccount(user);
 
