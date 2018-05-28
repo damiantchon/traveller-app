@@ -1,11 +1,23 @@
 <resources>
     <string name="app_name">TravellerApp</string>
 
-    <!-- Login Strings -->
-    <string name="email_hint">email</string>
+    <!-- Login -->
+    <string name="login_hint">login</string>
     <string name="password_hint">password</string>
     <string name="signin_button">Sign In</string>
-    <string name="signup_link">Sign Up</string>
+    <string name="signup_link">Register</string>
+
+    <string name="login_correct">Logged in successfully!</string>
+    <string name="login_empty">You need to enter login and password!</string>
+    <string name="login_wrong_credentials">Wrong username or password!</string>
+
+    <!-- Register -->
+    <string name="register_login_hint">login</string>
+    <string name="register_password_hint">password</string>
+    <string name="register_repassword_hint">retype password</string>
+
+    <string name="user_duplicate">Username taken!</string>
+    <string name="user_created">User created successfully!</string>
 
 
 </resources>
