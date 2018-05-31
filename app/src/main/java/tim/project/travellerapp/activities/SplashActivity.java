@@ -1,8 +1,8 @@
 package tim.project.travellerapp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -13,11 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
+import tim.project.travellerapp.helpers.AuthenticationHelper;
 import tim.project.travellerapp.models.UserDetails;
 
 import static tim.project.travellerapp.activities.LoginActivity.preferences;
+import static tim.project.travellerapp.helpers.AuthenticationHelper.*;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,10 @@ public class SplashActivity extends Activity {
 
             @Override
             public void onFailure(Call<UserDetails> call, Throwable t) {
-                Toast.makeText(SplashActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                //TODO Clear preference
+                clearSharedPreferences();
+
+                gotoLogin();
             }
         });
     }

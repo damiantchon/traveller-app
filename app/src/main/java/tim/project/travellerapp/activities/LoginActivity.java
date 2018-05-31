@@ -1,9 +1,9 @@
 package tim.project.travellerapp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +21,7 @@ import tim.project.travellerapp.models.User;
 import tim.project.travellerapp.models.UserDetails;
 
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
 
     public static SharedPreferences preferences;
 

@@ -1,7 +1,7 @@
 package tim.project.travellerapp.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 
@@ -9,7 +9,7 @@ import tim.project.travellerapp.R;
 
 import static tim.project.travellerapp.activities.LoginActivity.preferences;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
 
