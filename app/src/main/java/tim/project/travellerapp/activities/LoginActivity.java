@@ -37,18 +37,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        //GET PREFERENCES
-
-        login_token = (TextView) findViewById(R.id.token_login);
+        login_token = (TextView) findViewById(R.id.login_appname);
         username = (EditText) findViewById(R.id.login_login);
         password = (EditText) findViewById(R.id.login_password);
-
-
-
-        String insertMe = preferences.getString("Token", "Empty") + preferences.getLong("UserId", 0L) + preferences.getBoolean("Admin", false);
-        login_token.setText(insertMe);
-    }
+        }
 
     public void onLoginClick(View view) {
 
@@ -168,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void gotoMain() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finishAfterTransition();
     }

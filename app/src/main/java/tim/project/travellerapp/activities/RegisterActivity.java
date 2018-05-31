@@ -59,6 +59,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    public void onBackClick(View view) {
+        finish();
+    }
+
     private void registerUser(User user) {
 
 
