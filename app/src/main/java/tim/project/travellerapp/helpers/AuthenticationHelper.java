@@ -18,4 +18,12 @@ public class AuthenticationHelper {
 
         editor.apply();
     }
+
+    public static boolean passwordsEqual(String passwordOne, String passwordTwo) {
+        return passwordOne.equals(passwordTwo);
+    }
+
+    public static boolean passwordValid(String password) {
+        return password.length() >= 6;
+    }
 }

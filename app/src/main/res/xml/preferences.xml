@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <tim.project.travellerapp.preferences.CustomPreferenceCategory
+        android:key="general_category"
+        android:title="@string/settings_general_category">
+
+    <ListPreference
+        android:defaultValue="en"
+        android:entries="@array/languages_array_keys"
+        android:entryValues="@array/languages_array_values"
+        android:key="localisation"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/settings_change_language_title" />
+    </tim.project.travellerapp.preferences.CustomPreferenceCategory>
+
+    <tim.project.travellerapp.preferences.CustomPreferenceCategory
+        android:key="user_category"
+        android:title="@string/settings_user_category">
+
+        <tim.project.travellerapp.preferences.ChangePasswordPreference
+            android:dialogTitle="@string/preference_title_change_password"
+            android:title="@string/settings_change_password_title">
+
+        </tim.project.travellerapp.preferences.ChangePasswordPreference>
+
+        <tim.project.travellerapp.preferences.DeleteAccountPreference
+            android:dialogMessage="Are you sure? (This action is not reversible!)"
+            android:dialogTitle="@string/settings_delete_account_title"
+            android:negativeButtonText="No"
+            android:positiveButtonText="Yes"
+            android:title="@string/settings_delete_account_title">
+
+        </tim.project.travellerapp.preferences.DeleteAccountPreference>
+    </tim.project.travellerapp.preferences.CustomPreferenceCategory>
+
+</PreferenceScreen>

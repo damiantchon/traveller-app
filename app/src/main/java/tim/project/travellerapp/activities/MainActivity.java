@@ -48,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.settings:
                 //help
-                Intent settings = new Intent(this, SettingsActivity.class);
-                startActivity(settings);
+                Intent settingsBis = new Intent(this, SettingsActivityBis.class);
+                startActivity(settingsBis);
                 break;
             case R.id.about:
-                Toast.makeText(getApplicationContext(), "About", Toast.LENGTH_SHORT).show();
+                Intent settings = new Intent(this, SettingsActivity.class);
+                startActivity(settings);
                 //about
                 break;
             case R.id.logout:
