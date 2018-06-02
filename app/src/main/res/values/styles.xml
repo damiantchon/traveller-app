@@ -4,6 +4,7 @@
     <!--<item name="android:windowEnterAnimation"></item>-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
     <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored">
@@ -21,6 +22,20 @@
         <item name="android:textColorSecondary">@color/colorPrimaryLight</item>
     </style>
 
+    <!--Dialog theme-->
+
+    <style name="AlertDialogStyle" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
     <!--Menu item theme-->
     <style name="CustomPopupStyle" parent="Theme.AppCompat.Light.NoActionBar">

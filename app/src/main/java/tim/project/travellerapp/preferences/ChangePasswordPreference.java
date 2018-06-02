@@ -2,7 +2,9 @@ package tim.project.travellerapp.preferences;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.preference.DialogPreference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
@@ -55,6 +57,7 @@ public class ChangePasswordPreference extends DialogPreference {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (which == DialogInterface.BUTTON_POSITIVE) {
 
             //New passwords different
@@ -72,7 +75,7 @@ public class ChangePasswordPreference extends DialogPreference {
                 preventFromClosing(dialog, false);
 
                 PasswordChange passwordChange = new PasswordChange(
-                        LoginActivity.preferences.getLong("UserId", -1),
+                        preferences.getLong("UserId", -1),
                         editTextOldPassword.getText().toString(),
                         editTextNewPassword.getText().toString());
 
@@ -82,7 +85,7 @@ public class ChangePasswordPreference extends DialogPreference {
                 Retrofit retrofit = builder.build();
                 ApiClient client = retrofit.create(ApiClient.class);
 
-                String token = LoginActivity.preferences.getString("Token", null);
+                String token = preferences.getString("Token", null);
 
                 Call<Void> call = client.changePassword(passwordChange, token);
                 call.enqueue(new Callback<Void>() {

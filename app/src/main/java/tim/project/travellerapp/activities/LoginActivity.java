@@ -3,6 +3,7 @@ package tim.project.travellerapp.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ import tim.project.travellerapp.models.UserDetails;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static SharedPreferences preferences;
+    //public static SharedPreferences preferences;
 
     private TextView login_token;
 
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.code() == 200) {
                     //Toast.makeText(LoginActivity.this, R.string.login_correct, Toast.LENGTH_SHORT).show();
                     //Toast.makeText(LoginActivity.this,  response.headers().get("Token"), Toast.LENGTH_SHORT).show();
-
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     //TODO Zapisać użytkownika!!!
                     SharedPreferences.Editor editor = preferences.edit();
                     String token = response.headers().get("Token");
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     Toast.makeText(LoginActivity.this,response.body().getUsername(),Toast.LENGTH_SHORT).show();
-
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = preferences.edit();
 
                     String username = response.body().getUsername();

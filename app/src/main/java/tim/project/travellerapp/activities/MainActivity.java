@@ -1,7 +1,9 @@
 package tim.project.travellerapp.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,7 +15,6 @@ import android.widget.Toast;
 
 import tim.project.travellerapp.R;
 
-import static tim.project.travellerapp.activities.LoginActivity.preferences;
 import static tim.project.travellerapp.helpers.AuthenticationHelper.clearSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         setSupportActionBar(toolbar);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         textView.setText(preferences.getString("Token", "Empty"));
 
     }
@@ -48,18 +50,20 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.settings:
                 //help
+                Toast.makeText(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Locale.Helper.Selected.Language", "xD"), Toast.LENGTH_SHORT).show();
+
                 Intent settingsBis = new Intent(this, SettingsActivityBis.class);
                 startActivity(settingsBis);
                 break;
             case R.id.about:
-                Intent settings = new Intent(this, SettingsActivity.class);
-                startActivity(settings);
-                //about
+
+                //Intent settings = new Intent(this, SettingsActivity.class);
+                //startActivity(settings);
                 break;
             case R.id.logout:
                 Toast.makeText(getApplicationContext(), R.string.succesfull_logout, Toast.LENGTH_SHORT).show();
 
-                clearSharedPreferences();
+                clearSharedPreferences(getApplicationContext());
 
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -1,12 +1,14 @@
 package tim.project.travellerapp.helpers;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
-import static tim.project.travellerapp.activities.LoginActivity.preferences;
 
 public class AuthenticationHelper {
-    public static void clearSharedPreferences() {
+    public static void clearSharedPreferences(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.remove("Token");

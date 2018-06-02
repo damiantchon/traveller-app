@@ -1,7 +1,9 @@
 package tim.project.travellerapp.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -13,20 +15,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
-import tim.project.travellerapp.helpers.AuthenticationHelper;
 import tim.project.travellerapp.models.UserDetails;
 
-import static tim.project.travellerapp.activities.LoginActivity.preferences;
 import static tim.project.travellerapp.helpers.AuthenticationHelper.*;
 
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        preferences = getApplicationContext().getSharedPreferences("Token",0);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if (!preferences.getString("Token", "Empty").equals("Empty")) {
             tokenLogin(preferences.getLong("UserId", 0L), preferences.getString("Token", null));
         } else {
@@ -41,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
         ApiClient client = retrofit.create(ApiClient.class);
-
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Call<UserDetails> call =  client.getUserDetails(userId, token);
 
         call.enqueue(new Callback<UserDetails>() {
@@ -58,7 +58,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserDetails> call, Throwable t) {
                 //TODO Clear preference
-                clearSharedPreferences();
+                clearSharedPreferences(getApplicationContext());
 
                 gotoLogin();
             }

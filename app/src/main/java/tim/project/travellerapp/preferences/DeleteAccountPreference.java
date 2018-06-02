@@ -3,7 +3,9 @@ package tim.project.travellerapp.preferences;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.DialogPreference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 
 import retrofit2.Call;
@@ -24,6 +26,8 @@ public class DeleteAccountPreference extends DialogPreference {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         if (which == DialogInterface.BUTTON_POSITIVE) {
             Retrofit.Builder builder = new Retrofit.Builder()
                     .baseUrl(Constants.REST_API_ADDRESS)
@@ -33,8 +37,8 @@ public class DeleteAccountPreference extends DialogPreference {
 
             ApiClient client = retrofit.create(ApiClient.class);
 
-            Long userId = LoginActivity.preferences.getLong("UserId", 0);
-            String token = LoginActivity.preferences.getString("Token", null);
+            Long userId = preferences.getLong("UserId", 0);
+            String token = preferences.getString("Token", null);
 
             Call<Void> call = client.desactivateAccount(userId, token);
 
@@ -42,7 +46,7 @@ public class DeleteAccountPreference extends DialogPreference {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if(response.code() == 200) {
-                        clearSharedPreferences();
+                        clearSharedPreferences(getContext());
                         Intent intent = new Intent(getContext(), LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         getContext().startActivity(intent);
