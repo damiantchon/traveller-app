@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import static tim.project.travellerapp.helpers.AuthenticationHelper.clearSharedP
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
-        textView = (TextView) findViewById(R.id.token_view);
-
-
 
         setSupportActionBar(toolbar);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        textView.setText(preferences.getString("Token", "Empty"));
-
     }
 
     @Override
@@ -43,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -73,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onToVisitClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), ToVisitActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,5 +1,7 @@
 package tim.project.travellerapp.clients;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -10,6 +12,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import tim.project.travellerapp.models.PasswordChange;
+import tim.project.travellerapp.models.Place;
 import tim.project.travellerapp.models.User;
 import tim.project.travellerapp.models.UserDetails;
 
@@ -30,4 +33,7 @@ public interface ApiClient {
 
     @PUT("/user/deactivate/{userId}/en")
     Call<Void> desactivateAccount(@Path("userId") Long userId, @Header("Token") String token);
+
+    @GET("/place/all")
+    Call<List<Place>> getActivePlaces(@Header("Token") String token);
 }

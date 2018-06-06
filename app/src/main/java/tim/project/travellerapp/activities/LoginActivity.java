@@ -24,7 +24,6 @@ import tim.project.travellerapp.models.UserDetails;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //public static SharedPreferences preferences;
 
     private TextView login_token;
 
