@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SettingsActivityBis" />
+        <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.ToVisitActivity" />
 
         <!--
@@ -47,16 +47,17 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
             android:name=".activities.ToVisitMapsActivity"
-            android:label="@string/title_activity_to_visit_maps">
-
-        </activity>
+            android:label="@string/title_activity_to_visit_maps" />
+        <activity
+            android:name=".activities.AddNewPlaceMapsActivity"
+            android:label="@string/title_activity_add_new_place_maps" />
+        <activity android:name=".activities.AddNewPlaceActivity" />
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         login_token = (TextView) findViewById(R.id.login_appname);
         username = (EditText) findViewById(R.id.login_login);
         password = (EditText) findViewById(R.id.login_password);
+
+
+
         }
 
     public void onLoginClick(View view) {

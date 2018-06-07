@@ -1,7 +1,6 @@
 package tim.project.travellerapp.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -46,10 +44,8 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.settings:
                 //help
-                Toast.makeText(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Locale.Helper.Selected.Language", "xD"), Toast.LENGTH_SHORT).show();
-
-                Intent settingsBis = new Intent(this, SettingsActivityBis.class);
-                startActivity(settingsBis);
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 break;
             case R.id.about:
 
@@ -73,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onToVisitClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ToVisitActivity.class);
+        startActivity(intent);
+    }
+
+    public void showMapClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), ToVisitMapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void addNewPlaceClick(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), AddNewPlaceMapsActivity.class);
         startActivity(intent);
     }
 }

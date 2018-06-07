@@ -1,4 +1,4 @@
-package tim.project.travellerapp.models;
+package tim.project.travellerapp.models.request_body_models;
 
 public class PasswordChange {
 

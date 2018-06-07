@@ -13,28 +13,42 @@
     </include>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/to_visit_menu_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/menu_goto_do_odwiedzenia"
+        android:text="@string/to_visit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar"
         android:onClick="onToVisitClick"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/show_on_map_menu_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Button"
+        android:text="@string/show_on_map_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/to_visit_menu_button"
+        android:onClick="showMapClick"/>
+
+    <Button
+        android:id="@+id/add_new_place_menu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/add_new_place_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_on_map_menu_button"
+        android:onClick="addNewPlaceClick"/>
 
 </android.support.constraint.ConstraintLayout>

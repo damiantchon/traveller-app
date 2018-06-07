@@ -19,9 +19,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
-import tim.project.travellerapp.activities.LoginActivity;
 import tim.project.travellerapp.clients.ApiClient;
-import tim.project.travellerapp.models.PasswordChange;
+import tim.project.travellerapp.models.request_body_models.PasswordChange;
 
 import static tim.project.travellerapp.helpers.AuthenticationHelper.passwordValid;
 import static tim.project.travellerapp.helpers.AuthenticationHelper.passwordsEqual;

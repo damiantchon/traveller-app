@@ -12,7 +12,7 @@ import android.widget.Toolbar;
 
 import tim.project.travellerapp.R;
 
-public class SettingsActivityBis extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity {
 
     private Preference customPreference;
 

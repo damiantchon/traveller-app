@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
+
+
     <EditText
         android:id="@+id/login_login"
         android:layout_width="@dimen/login_buttons_width"

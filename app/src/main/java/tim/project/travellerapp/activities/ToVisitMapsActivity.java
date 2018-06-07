@@ -1,7 +1,9 @@
 package tim.project.travellerapp.activities;
 
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,11 +12,24 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
+import tim.project.travellerapp.clients.ApiClient;
+import tim.project.travellerapp.models.Place;
 
 public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private List<Place> placeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +39,8 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -39,6 +56,42 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(Constants.REST_API_ADDRESS)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = builder.build();
+        ApiClient client = retrofit.create(ApiClient.class);
+        String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Token", null);
+
+        Call<List<Place>> call = client.getActivePlaces(token);
+
+        call.enqueue(new Callback<List<Place>>() {
+            @Override
+            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                if (response.code() == 200) {
+
+                    placeList = response.body();
+                    placeList = new ArrayList<>(placeList);
+
+                    for (Place place: placeList) {
+                        String[] splitGps = place.getGps().split(",");
+                        LatLng latLng = new LatLng(Double.parseDouble(splitGps[0]), Double.parseDouble(splitGps[1]));
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(place.getName()));
+                    }
+
+                } else {
+                    Toast.makeText(ToVisitMapsActivity.this, "No failure but still shitty response :(", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Place>> call, Throwable t) {
+                Toast.makeText(ToVisitMapsActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
