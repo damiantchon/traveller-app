@@ -1,8 +1,9 @@
 package tim.project.travellerapp.activities;
 
-import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -68,7 +69,7 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
 
         call.enqueue(new Callback<List<Place>>() {
             @Override
-            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+            public void onResponse(@NonNull Call<List<Place>> call, @NonNull Response<List<Place>> response) {
                 if (response.code() == 200) {
 
                     placeList = response.body();
@@ -86,7 +87,7 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
             }
 
             @Override
-            public void onFailure(Call<List<Place>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
                 Toast.makeText(ToVisitMapsActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
             }
         });

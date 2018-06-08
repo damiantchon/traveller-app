@@ -1,11 +1,9 @@
 package tim.project.travellerapp.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-
-import butterknife.BindView;
 import tim.project.travellerapp.R;
 
 public class AddNewPlaceActivity extends AppCompatActivity {

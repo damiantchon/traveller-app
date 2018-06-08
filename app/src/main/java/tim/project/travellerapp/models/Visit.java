@@ -2,18 +2,18 @@ package tim.project.travellerapp.models;
 
 public class Visit {
     private long id;
-    private long timestamp;
+    private long date;
     private boolean visited;
-    private boolean visable;
+    private boolean visible;
     private long userId;
     private long placeId;
 
 
     public Visit(long id, long timestamp, boolean visited, boolean visable, long userId, long placeId) {
         this.id = id;
-        this.timestamp = timestamp;
+        this.date = timestamp;
         this.visited = visited;
-        this.visable = visable;
+        this.visible = visable;
         this.userId = userId;
         this.placeId = placeId;
     }
@@ -23,16 +23,16 @@ public class Visit {
         return id;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public long getDate() {
+        return date;
     }
 
     public boolean isVisited() {
         return visited;
     }
 
-    public boolean isVisable() {
-        return visable;
+    public boolean isVisible() {
+        return visible;
     }
 
     public long getUserId() {

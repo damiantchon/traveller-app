@@ -1,8 +1,8 @@
 package tim.project.travellerapp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if(response.code() == 409){
                     Toast.makeText(RegisterActivity.this, getString(R.string.user_duplicate),Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 200){
@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                 Toast.makeText(RegisterActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });

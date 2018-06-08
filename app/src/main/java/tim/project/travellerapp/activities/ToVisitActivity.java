@@ -1,9 +1,9 @@
 package tim.project.travellerapp.activities;
 
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
@@ -29,8 +29,6 @@ public class ToVisitActivity extends AppCompatActivity {
     @BindView(R.id.to_visit_recycler_view)
     RecyclerView mRecyclerView;
 
-    private RecyclerView.Adapter mAdapter;
-
     private List<Place> placeList;
 
     @Override
@@ -41,6 +39,7 @@ public class ToVisitActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mRecyclerView.setHasFixedSize(true);
+
         StaggeredGridLayoutManager mStaggeredGridManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
         mRecyclerView.setLayoutManager(mStaggeredGridManager);
@@ -51,19 +50,19 @@ public class ToVisitActivity extends AppCompatActivity {
         Retrofit retrofit = builder.build();
         ApiClient client = retrofit.create(ApiClient.class);
         String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Token", null);
+        long userId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getLong("UserId", 0L);
 
-        Call<List<Place>> call = client.getActivePlaces(token);
+        //Change depending on string.
+        Call<List<Place>> call = client.getPlacesToVisit(userId, token);
 
         call.enqueue(new Callback<List<Place>>() {
             @Override
-            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+            public void onResponse(@NonNull Call<List<Place>> call, @NonNull Response<List<Place>> response) {
                 if (response.code() == 200) {
 
                     placeList = response.body();
 
                     ArrayList<Place> arrayList = new ArrayList<>(placeList);
-
-                    Toast.makeText(ToVisitActivity.this, placeList.get(0).getName(), Toast.LENGTH_SHORT).show();
 
                     VisitAdapter adapter = new VisitAdapter(arrayList);
 
@@ -75,7 +74,7 @@ public class ToVisitActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Place>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
                 Toast.makeText(ToVisitActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
             }
         });

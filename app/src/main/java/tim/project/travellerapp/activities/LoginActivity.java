@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -73,12 +73,12 @@ public class LoginActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NonNull Call<Void> call,@NonNull Response<Void> response) {
                 if(response.code() == 200) {
                     //Toast.makeText(LoginActivity.this, R.string.login_correct, Toast.LENGTH_SHORT).show();
                     //Toast.makeText(LoginActivity.this,  response.headers().get("Token"), Toast.LENGTH_SHORT).show();
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    //TODO Zapisać użytkownika!!!
+
                     SharedPreferences.Editor editor = preferences.edit();
                     String token = response.headers().get("Token");
                     Long userId = Long.parseLong(response.headers().get("UserId"));
@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                 Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
@@ -117,10 +117,10 @@ public class LoginActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<UserDetails>() {
             @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+            public void onResponse(@NonNull Call<UserDetails> call, @NonNull Response<UserDetails> response) {
 
                 if (response.code() == 200) {
-                    Toast.makeText(LoginActivity.this,response.body().getUsername(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, response.body().getUsername(),Toast.LENGTH_SHORT).show();
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = preferences.edit();
 
@@ -134,7 +134,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     editor.apply();
 
-                    Toast.makeText(LoginActivity.this, preferences.getString("Username", "xD"),Toast.LENGTH_SHORT).show();
 
 
                     if (!active) {
@@ -144,14 +143,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     gotoMain();
 
-
                 } else if (response.code() == 403) {
                     Toast.makeText(LoginActivity.this, "FeelsBadMan",Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
+            public void onFailure(@NonNull Call<UserDetails> call, @NonNull Throwable t) {
                 Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });

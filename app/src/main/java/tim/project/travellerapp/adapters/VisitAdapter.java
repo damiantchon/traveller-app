@@ -38,19 +38,13 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.VisitViewHol
             super(viewItem);
 
             ButterKnife.bind(this, viewItem);
-
-//            cardViewPlaceItem = (CardView) viewItem.findViewById(R.id.card_view_place_item);
-//            titleTextView = (TextView) viewItem.findViewById(R.id.place_item_name);
-//            descriptionTextView = (TextView) viewItem.findViewById(R.id.place_item_description);
-
         }
     }
 
     @Override
     public VisitViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.place_item, parent, false);
-        VisitViewHolder visitViewHolder = new VisitViewHolder(viewItem);
-        return visitViewHolder;
+        return new VisitViewHolder(viewItem);
     }
 
     @Override

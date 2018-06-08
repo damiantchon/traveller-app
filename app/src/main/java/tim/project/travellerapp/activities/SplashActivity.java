@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
 import tim.project.travellerapp.models.UserDetails;
 
-import static tim.project.travellerapp.helpers.AuthenticationHelper.*;
+import static tim.project.travellerapp.helpers.AuthenticationHelper.clearSharedPreferences;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<UserDetails>() {
             @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+            public void onResponse(@NonNull Call<UserDetails> call, @NonNull Response<UserDetails> response) {
                 if (response.code() == 200) {
                     Toast.makeText(SplashActivity.this, "Logged in as " + preferences.getString("Username", "noone - that shouldn't be possible!"), Toast.LENGTH_SHORT).show();
                     gotoMain();
@@ -56,7 +57,7 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
+            public void onFailure(@NonNull Call<UserDetails> call, @NonNull Throwable t) {
                 //TODO Clear preference
                 clearSharedPreferences(getApplicationContext());
 

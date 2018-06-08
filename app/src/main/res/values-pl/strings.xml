@@ -4,8 +4,8 @@
     <!-- Login -->
     <string name="login_hint">login</string>
     <string name="password_hint">hasło</string>
-    <string name="signin_button">Zaloguj</string>
-    <string name="signup_link">Rejestracja</string>
+    <string name="signin_button">Sign In</string>
+    <string name="signup_link">Register</string>
 
     <string name="login_correct">Logged in successfully!</string>
     <string name="login_empty">You need to enter login and password!</string>
@@ -14,7 +14,7 @@
     <!-- Register -->
     <string name="register_login_hint">login</string>
     <string name="register_password_hint">password</string>
-    <string name="register_repassword_hint">retype password</string>
+    <string name="register_repassword_hint">confirm password</string>
     <string name="register_title">Registration</string>
     <string name="back_button">Back</string>
 
@@ -22,6 +22,14 @@
     <string name="user_created">User created successfully!</string>
 
     <!-- Main -->
+
+    <string name="to_visit_button">Places to visit</string>
+    <string name="visited_button">Show my visited places</string>
+    <string name="show_on_map_button">Show all on map</string>
+    <string name="add_new_place_button">Add new place</string>
+
+    <!--Visited Places -->
+    <string name="visited_places_date_description">Visit date:</string>
 
     <!--Settings-->
     <string name="action_settings">Settings</string>
@@ -46,73 +54,16 @@
 
     <string name="settings_change_password_title">Change password</string>
     <string name="settings_delete_account_title">Delete account</string>
+
+    <string name="setting_old_password_hint">Old password</string>
+    <string name="setting_new_password_hint">New password</string>
+    <string name="setting_new2_password_hint">Confirm new password</string>
+
     <string name="settings_passwords_differ">Entered passwords are different!</string>
 
     <string name="preference_title_change_password">Change password</string>
     <string name="settings_password_changed">Password changed successfully!</string>
     <string name="settings_password_not_changed">Old password invalid!</string>
-
-    <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
-
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
-
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
@@ -123,5 +74,8 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_to_visit_map">Map</string>
+    <string name="title_activity_to_visit_maps">Map</string>
+    <string name="title_activity_add_new_place_maps">Map</string>
 
 </resources>

@@ -10,13 +10,13 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import tim.project.travellerapp.models.request_body_models.NewPlace;
-import tim.project.travellerapp.models.request_body_models.PasswordChange;
 import tim.project.travellerapp.models.Place;
 import tim.project.travellerapp.models.User;
 import tim.project.travellerapp.models.UserDetails;
 import tim.project.travellerapp.models.Visit;
+import tim.project.travellerapp.models.request_body_models.NewPlace;
 import tim.project.travellerapp.models.request_body_models.NewVisit;
+import tim.project.travellerapp.models.request_body_models.PasswordChange;
 
 public interface ApiClient {
 
@@ -44,4 +44,13 @@ public interface ApiClient {
 
     @POST("/place/new/en")
     Call<Void> addNewPlace(@Body NewPlace newPlace, @Header("Token") String token);
+
+    @GET("/place/allVisitedPlaces/{userId}")
+    Call<List<Place>> getVisitedPlaces(@Path("userId") Long userId, @Header("Token") String token);
+
+    @GET("/place/allNotVisitedPlaces/{userId}")
+    Call<List<Place>> getPlacesToVisit(@Path("userId") Long userId, @Header("Token") String token);
+
+    @GET("/visit/myVisitedPlaces/{userId}")
+    Call<List<Visit>> getVisitedVisits(@Path("userId") Long userId, @Header("Token") String token);
 }

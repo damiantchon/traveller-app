@@ -23,9 +23,14 @@
 
     <!-- Main -->
 
-    <string name="to_visit_button">Places to Visit</string>
+    <string name="to_visit_button">Places to visit</string>
+    <string name="visited_button">Show my visited places</string>
     <string name="show_on_map_button">Show all on map</string>
     <string name="add_new_place_button">Add new place</string>
+
+    <!--Visited Places -->
+    <string name="visited_places_date_description">Visit date:</string>
+
     <!--Settings-->
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
