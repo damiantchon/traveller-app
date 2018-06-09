@@ -70,17 +70,21 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
                 String provider = locationManager.getBestProvider(criteria, true);
                 Location location = locationManager.getLastKnownLocation(provider);
 
-                if (location!=null){
+                if (location != null){
                     double longitude = location.getLongitude();
                     double latitude = location.getLatitude();
 
                     LatLng currentLocation = new LatLng(latitude, longitude);
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f));
                 }
+                else {
+                    LatLng centerOfPoland = new LatLng(52.11416667, 19.42361111);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerOfPoland, 5.6f));
+                }
 
             } else {
-                LatLng warsaw = new LatLng(52.2297, 21.0122);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(warsaw, 15f));
+                LatLng centerOfPoland = new LatLng(52.11416667, 19.42361111);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerOfPoland, 5.6f));
             }
 
         }
@@ -111,7 +115,6 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 LatLng latLng = new LatLng(latitude, longitude);
-                Toast.makeText(this, Double.toString(latitude) + ", " + Double.toString(longitude), Toast.LENGTH_SHORT).show();
             } else {
 
             }

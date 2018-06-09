@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
+import tim.project.travellerapp.helpers.ApiHelper;
 import tim.project.travellerapp.models.User;
 import tim.project.travellerapp.models.UserDetails;
 
@@ -63,11 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginUser(User user) {
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.REST_API_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        ApiClient client = retrofit.create(ApiClient.class);
+        ApiClient client = ApiHelper.getApiClient();
 
         Call<Void> call = client.loginUser(user);
 
@@ -107,11 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void getAndSaveAdationalData(Long userId, String token) {
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.REST_API_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        ApiClient client = retrofit.create(ApiClient.class);
+        ApiClient client = ApiHelper.getApiClient();
 
         Call<UserDetails> call =  client.getUserDetails(userId, token);
 

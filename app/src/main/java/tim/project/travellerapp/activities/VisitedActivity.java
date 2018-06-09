@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +24,7 @@ import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.adapters.VisitedAdapter;
 import tim.project.travellerapp.clients.ApiClient;
+import tim.project.travellerapp.helpers.ApiHelper;
 import tim.project.travellerapp.models.Place;
 import tim.project.travellerapp.models.Visit;
 import tim.project.travellerapp.models.VisitedPlace;
@@ -40,7 +42,6 @@ public class VisitedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visited);
-
         visitedPlaceList = new ArrayList<>();
 
         ButterKnife.bind(this);
@@ -51,13 +52,11 @@ public class VisitedActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mStaggeredGridManager);
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.REST_API_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        ApiClient client = retrofit.create(ApiClient.class);
+        ApiClient client = ApiHelper.getApiClient();
+
         String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Token", null);
         long userId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getLong("UserId", 0L);
+
 
         Call<List<Place>> call = client.getVisitedPlaces(userId, token);
 
@@ -72,7 +71,7 @@ public class VisitedActivity extends AppCompatActivity {
                             Collections.sort(visitedPlaceList, (o1, o2) -> (int)(o1.getId() - o2.getId()));
                         }
                     }
-                    //Callback inside callback :)
+                    //Callback inside callback - not proud of this :)
                     Call<List<Visit>> secondCall = client.getVisitedVisits(userId, token);
                     secondCall.enqueue(new Callback<List<Visit>>() {
                         @Override
@@ -115,5 +114,6 @@ public class VisitedActivity extends AppCompatActivity {
                 Toast.makeText(VisitedActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }

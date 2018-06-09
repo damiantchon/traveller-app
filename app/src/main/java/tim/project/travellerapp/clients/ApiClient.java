@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -17,6 +18,7 @@ import tim.project.travellerapp.models.Visit;
 import tim.project.travellerapp.models.request_body_models.NewPlace;
 import tim.project.travellerapp.models.request_body_models.NewVisit;
 import tim.project.travellerapp.models.request_body_models.PasswordChange;
+import tim.project.travellerapp.models.request_body_models.VisitVisited;
 
 public interface ApiClient {
 
@@ -53,4 +55,13 @@ public interface ApiClient {
 
     @GET("/visit/myVisitedPlaces/{userId}")
     Call<List<Visit>> getVisitedVisits(@Path("userId") Long userId, @Header("Token") String token);
+
+    @GET("/visit/myNotVisitedPlaces/{userId}")
+    Call<List<Visit>> getNotVisitedVisits(@Path("userId") Long userId, @Header("Token") String token);
+
+    @PUT("/visit/selectPlaceAsVisited/en")
+    Call<Void> setVisitAsVisited(@Body VisitVisited visitVisited, @Header("Token") String token);
+
+    @DELETE("/visit/deleteNotVisitedPlace/{visitId}/{userId}/en")
+    Call<Void> deleteNotVisitedVisit(@Path("visitId") long visitId, @Path("userId") long userId, @Header("Token") String token);
 }

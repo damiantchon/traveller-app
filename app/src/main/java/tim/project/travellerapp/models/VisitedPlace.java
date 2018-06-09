@@ -2,6 +2,10 @@ package tim.project.travellerapp.models;
 
 public class VisitedPlace extends Place {
 
+    private long visitId;
+
+
+
     private long timestamp;
     private boolean visited;
     private boolean visible;
@@ -10,8 +14,9 @@ public class VisitedPlace extends Place {
         super(id, name, address, gps, description, accepted, active, userId, username);
     }
 
-    public VisitedPlace(long id, String name, String address, String gps, String description, boolean accepted, boolean active, long userId, String username, long timestamp, boolean visited, boolean visible) {
+    public VisitedPlace(long id, String name, String address, String gps, String description, boolean accepted, boolean active, long userId, String username, long visitId, long timestamp, boolean visited, boolean visible) {
         super(id, name, address, gps, description, accepted, active, userId, username);
+        this.visitId = visitId;
         this.timestamp = timestamp;
         this.visited = visited;
         this.visible = visible;
@@ -45,5 +50,11 @@ public class VisitedPlace extends Place {
         this.visible = visible;
     }
 
+    public long getVisitId() {
+        return visitId;
+    }
 
+    public void setVisitId(long visitId) {
+        this.visitId = visitId;
+    }
 }

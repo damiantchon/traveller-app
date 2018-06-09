@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
+import tim.project.travellerapp.helpers.ApiHelper;
 import tim.project.travellerapp.models.UserDetails;
 
 import static tim.project.travellerapp.helpers.AuthenticationHelper.clearSharedPreferences;
@@ -37,11 +38,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void tokenLogin(Long userId, String token) {
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.REST_API_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        ApiClient client = retrofit.create(ApiClient.class);
+
+        ApiClient client = ApiHelper.getApiClient();
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Call<UserDetails> call =  client.getUserDetails(userId, token);
 

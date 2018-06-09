@@ -1,4 +1,8 @@
 <resources>
+    <!-- INTER-INTENT COMMUNICATION - ! DON'T LOCALISE !-->
+    <string name="PLACE_TO_VISIT_TITLE">tim.project.travellerapp.PLACE_TO_VISIT_TITLE</string>
+    <string name="PLACE_TO_VISIT_LOCALISATION">tim.project.travellerapp.PLACE_TO_VISIT_LOCALISATION</string>
+
     <string name="app_name">Traveller</string>
 
     <!-- Login -->
@@ -27,6 +31,11 @@
     <string name="visited_button">Show my visited places</string>
     <string name="show_on_map_button">Show all on map</string>
     <string name="add_new_place_button">Add new place</string>
+
+    <!--Places to visit -->
+
+    <string name="action_visited">Mark as visited</string>
+    <string name="action_delete">Remove</string>
 
     <!--Visited Places -->
     <string name="visited_places_date_description">Visit date:</string>

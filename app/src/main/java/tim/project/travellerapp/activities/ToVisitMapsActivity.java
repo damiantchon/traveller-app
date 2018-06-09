@@ -1,9 +1,12 @@
 package tim.project.travellerapp.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -24,11 +28,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
+import tim.project.travellerapp.helpers.ApiHelper;
+import tim.project.travellerapp.helpers.GpsHelper;
 import tim.project.travellerapp.models.Place;
 
 public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private double[] mGps;
 
     private List<Place> placeList;
 
@@ -58,45 +66,66 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.REST_API_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        ApiClient client = retrofit.create(ApiClient.class);
+        ApiClient client = ApiHelper.getApiClient();
+
         String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Token", null);
 
-        Call<List<Place>> call = client.getActivePlaces(token);
+        // W przypadku uruchomienia aktywności z dodatkową wartością "LOKALIZACJA"
+        if (this.getIntent().getStringExtra(getString(R.string.PLACE_TO_VISIT_LOCALISATION)) != null) {
+            String title = this.getIntent().getStringExtra(getString(R.string.PLACE_TO_VISIT_TITLE));
+            String gps = this.getIntent().getStringExtra(getString(R.string.PLACE_TO_VISIT_LOCALISATION));
 
-        call.enqueue(new Callback<List<Place>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Place>> call, @NonNull Response<List<Place>> response) {
-                if (response.code() == 200) {
+            double[] decodedGps = GpsHelper.decodeStringGps(gps);
+            final LatLng GPS =  new LatLng(decodedGps[0], decodedGps[1]);
+            mGps = new double[]{decodedGps[0], decodedGps[1]};
+            Marker marker = mMap.addMarker(new MarkerOptions().position(GPS).title(title));
 
-                    placeList = response.body();
-                    placeList = new ArrayList<>(placeList);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(GPS, 15F));
+            mMap.getUiSettings().setMapToolbarEnabled(false);
+            marker.showInfoWindow();
 
-                    for (Place place: placeList) {
-                        String[] splitGps = place.getGps().split(",");
-                        LatLng latLng = new LatLng(Double.parseDouble(splitGps[0]), Double.parseDouble(splitGps[1]));
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(place.getName()));
+
+        } else {
+
+            Call<List<Place>> call = client.getActivePlaces(token);
+
+            call.enqueue(new Callback<List<Place>>() {
+                @Override
+                public void onResponse(@NonNull Call<List<Place>> call, @NonNull Response<List<Place>> response) {
+                    if (response.code() == 200) {
+
+                        placeList = response.body();
+                        placeList = new ArrayList<>(placeList);
+
+                        for (Place place : placeList) {
+                            String[] splitGps = place.getGps().split(",");
+                            LatLng latLng = new LatLng(Double.parseDouble(splitGps[0]), Double.parseDouble(splitGps[1]));
+                            mMap.addMarker(new MarkerOptions().position(latLng).title(place.getName()));
+                        }
+
+                    } else {
+                        Toast.makeText(ToVisitMapsActivity.this, "No failure but still shitty response :(", Toast.LENGTH_SHORT).show();
                     }
-
-                } else {
-                    Toast.makeText(ToVisitMapsActivity.this, "No failure but still shitty response :(", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
-                Toast.makeText(ToVisitMapsActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
+                    Toast.makeText(ToVisitMapsActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 
+    public void onNavigateClick(View view) {
+        String strUri = "geo:0,0?q=";
+        strUri = strUri.concat(String.valueOf(mGps[0]) + "," + String.valueOf(mGps[1]));
 
+        Uri gmmIntentUri = Uri.parse(strUri);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+        finish();
+
     }
 }
