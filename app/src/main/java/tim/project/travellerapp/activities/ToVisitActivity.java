@@ -1,18 +1,16 @@
 package tim.project.travellerapp.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +20,8 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.adapters.VisitAdapter;
-import tim.project.travellerapp.adapters.VisitedAdapter;
 import tim.project.travellerapp.clients.ApiClient;
 import tim.project.travellerapp.helpers.ApiHelper;
 import tim.project.travellerapp.models.Place;
@@ -50,6 +44,21 @@ public class ToVisitActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_visit);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+
+        toolbar.setTitle(R.string.places_to_visit_toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         visitedPlaceList = new ArrayList<>();
 
         ButterKnife.bind(this);
@@ -203,5 +212,11 @@ public class ToVisitActivity extends AppCompatActivity  {
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.transition.slide_in_left, R.transition.slide_out_right);
     }
 }

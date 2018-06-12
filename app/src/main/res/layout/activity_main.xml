@@ -13,56 +13,66 @@
     </include>
 
     <Button
-        android:id="@+id/to_visit_menu_button"
+        android:id="@+id/add_new_place_menu_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/to_visit_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar"
-        android:onClick="onToVisitClick"/>
-
-    <Button
-        android:id="@+id/show_on_map_menu_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:onClick="showMapClick"
-        android:text="@string/show_on_map_button"
+        android:layout_marginTop="10dp"
+        android:onClick="addNewPlaceClick"
+        android:text="@string/add_new_place_button"
+        android:theme="@style/MenuButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/visited_menu_button" />
+        app:layout_constraintTop_toBottomOf="@+id/app_bar"
+        android:drawableStart="@drawable/ic_map_plus" />
 
     <Button
-        android:id="@+id/add_new_place_menu_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/to_visit_menu_button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/add_new_place_button"
+        android:layout_marginTop="0dp"
+        android:onClick="onToVisitClick"
+        android:text="@string/to_visit_button"
+        android:theme="@style/MenuButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/show_on_map_menu_button"
-        android:onClick="addNewPlaceClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/add_new_place_menu_button"
+        android:drawableStart="@drawable/ic_baseline_navigation_24px"/>
 
     <Button
         android:id="@+id/visited_menu_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
+        android:onClick="onVisitedClick"
         android:text="@string/visited_button"
+        android:theme="@style/MenuButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/to_visit_menu_button"
-        android:onClick="onVisitedClick"/>
+        android:drawableStart="@drawable/ic_map_marker_multiple"
+        android:shadowColor="@color/colorPrimary"/>
+
+    <Button
+        android:id="@+id/show_on_map_menu_button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:onClick="showMapClick"
+        android:text="@string/show_on_map_button"
+        android:theme="@style/MenuButtonStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/visited_menu_button"/>
 
 </android.support.constraint.ConstraintLayout>

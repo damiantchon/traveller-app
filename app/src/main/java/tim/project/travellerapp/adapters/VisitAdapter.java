@@ -1,5 +1,6 @@
 package tim.project.travellerapp.adapters;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -59,8 +60,10 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.VisitViewHol
             intent.putExtra(v.getResources().getString(R.string.PLACE_TO_VISIT_LOCALISATION), gps);
             intent.putExtra(v.getResources().getString(R.string.PLACE_TO_VISIT_TITLE), titleTextView.getText());
 
-            v.getContext().startActivity(intent);
-
+            Activity activity = (Activity) v.getContext();
+            activity.startActivity(intent);
+            activity.overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+            //v.getContext().startActivity(intent);
         }
 
 

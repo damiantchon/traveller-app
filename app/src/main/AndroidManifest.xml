@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -58,7 +60,8 @@
             android:name=".activities.AddNewPlaceMapsActivity"
             android:label="@string/title_activity_add_new_place_maps" />
         <activity android:name=".activities.AddNewPlaceActivity" />
-        <activity android:name=".activities.VisitedActivity"/>
+        <activity android:name=".activities.VisitedActivity" />
+
     </application>
 
 </manifest>

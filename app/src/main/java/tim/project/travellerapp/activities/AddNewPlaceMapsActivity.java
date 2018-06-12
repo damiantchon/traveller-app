@@ -18,12 +18,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
 import tim.project.travellerapp.R;
 
 public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
 
+    private LocationManager mLocationManager;
 
 
     @Override
@@ -65,10 +68,10 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
             LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             boolean gpsOn = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-            if (gpsOn) {
-                Criteria criteria = new Criteria();
-                String provider = locationManager.getBestProvider(criteria, true);
-                Location location = locationManager.getLastKnownLocation(provider);
+//            if (gpsOn) {
+//                Criteria criteria = new Criteria();
+//                String provider = locationManager.getBestProvider(criteria, true);
+                Location location = getLastKnownLocation();
 
                 if (location != null){
                     double longitude = location.getLongitude();
@@ -82,10 +85,10 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerOfPoland, 5.6f));
                 }
 
-            } else {
-                LatLng centerOfPoland = new LatLng(52.11416667, 19.42361111);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerOfPoland, 5.6f));
-            }
+//            } else {
+//                LatLng centerOfPoland = new LatLng(52.11416667, 19.42361111);
+//                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerOfPoland, 5.6f));
+//            }
 
         }
 
@@ -106,10 +109,8 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
 
             // Permisions granted
             mMap.setMyLocationEnabled(true);
-            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            String provider = locationManager.getBestProvider(criteria, true);
-            Location location = locationManager.getLastKnownLocation(provider);
+
+            Location location = getLastKnownLocation();
 
             if (location != null) {
                 double latitude = location.getLatitude();
@@ -120,6 +121,23 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
             }
             // Add a marker in Sydney and move the camera
         }
+    }
+
+    private Location getLastKnownLocation() {
+        mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+        List<String> providers = mLocationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            Location l = mLocationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                // Found best last known location: %s", l);
+                bestLocation = l;
+            }
+        }
+        return bestLocation;
     }
 
 
@@ -142,6 +160,11 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
     public void onMapLongClick(LatLng latLng) {
         Intent intent = new Intent(getApplicationContext(), AddNewPlaceActivity.class);
         startActivity(intent);
+    }
+
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.transition.slide_in_left, R.transition.slide_out_right);
     }
 
 }

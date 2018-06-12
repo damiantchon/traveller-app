@@ -6,13 +6,13 @@
         android:title="@string/settings_general_category">
 
     <ListPreference
-        android:defaultValue="en"
-        android:entries="@array/languages_array_keys"
-        android:entryValues="@array/languages_array_values"
-        android:key="localisation"
+        android:defaultValue="d"
+        android:entries="@array/travelling_method_keys"
+        android:entryValues="@array/travelling_method_values"
+        android:key="TRAVELING_METHOD"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/settings_change_language_title" />
+        android:title="@string/settings_change_traveling_method_title" />
     </tim.project.travellerapp.preferences.CustomPreferenceCategory>
 
     <tim.project.travellerapp.preferences.CustomPreferenceCategory

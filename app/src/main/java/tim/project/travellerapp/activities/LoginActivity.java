@@ -151,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onGotoSignupClick(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
     }
 
     public void gotoMain() {

@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -43,6 +45,22 @@ public class VisitedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visited);
         visitedPlaceList = new ArrayList<>();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+
+        toolbar.setTitle(R.string.visited_places_toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         ButterKnife.bind(this);
 
@@ -115,5 +133,10 @@ public class VisitedActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.transition.slide_in_left, R.transition.slide_out_right);
     }
 }

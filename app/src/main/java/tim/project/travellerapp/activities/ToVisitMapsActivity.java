@@ -5,7 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,16 +44,81 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
 
     private List<Place> placeList;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
+    @BindView(R.id.fab1)
+    FloatingActionButton fab1;
+
+    @BindView(R.id.fab2)
+    FloatingActionButton fab2;
+
+    @BindView(R.id.fab3)
+    FloatingActionButton fab3;
+
+    boolean isFabOpen = false;
+
+    boolean isOpeningNavigation = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_visit_maps);
+        ButterKnife.bind(this);
+
+        fab1.setAlpha(0f);
+        fab2.setAlpha(0f);
+        fab3.setAlpha(0f);
+
+        fab1.animate().translationY(230).setDuration(30).alpha(0);
+        fab2.animate().translationY(160).setDuration(30).alpha(0);
+        fab3.animate().translationY(90).setDuration(30).alpha(0);
+
+        fab1.setEnabled(false);
+        fab2.setEnabled(false);
+        fab3.setEnabled(false);
+
+
+
+        fab.setOnClickListener(v -> {
+            if(!isFabOpen) {
+                Toast.makeText(this, "Test!", Toast.LENGTH_SHORT).show();
+
+                showFabMenu();
+            } else {
+                closeFabMenu();
+            }
+        });
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
 
+    }
+
+    private void showFabMenu(){
+        isFabOpen = true;
+        fab1.animate().translationY(0).setDuration(300).alpha(1);
+        fab1.setEnabled(true);
+        fab2.animate().translationY(0).setDuration(300).alpha(1);
+        fab2.setEnabled(true);
+        fab3.animate().translationY(0).setDuration(300).alpha(1);
+        fab3.setEnabled(true);
+        fab.animate().alpha(0.5f);
+    }
+
+    private void closeFabMenu(){
+        isFabOpen=false;
+        fab1.animate().translationY(230).setDuration(300).alpha(0);
+        fab1.setEnabled(false);
+        fab2.animate().translationY(160).setDuration(300).alpha(0);
+        fab2.setEnabled(false);
+        fab3.animate().translationY(90).setDuration(300).alpha(0);
+        fab3.setEnabled(false);
+        fab.animate().alpha(1f);
     }
 
 
@@ -116,16 +185,38 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
         }
     }
 
-    public void onNavigateClick(View view) {
-        String strUri = "geo:0,0?q=";
+    public void onDriveClick(View view) {
+        onNavigateClick("d");
+    }
+    public void onBikeClick(View view) {
+        onNavigateClick("b");
+    }
+
+    public void onWalkClick(View view) {
+        onNavigateClick("w");
+    }
+
+    public void onNavigateClick(String mode) {
+//        String strUri = "geo:0,0?q=";
+        String strUri = "google.navigation:q=";
         strUri = strUri.concat(String.valueOf(mGps[0]) + "," + String.valueOf(mGps[1]));
+        //String mode = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("TRAVELING_METHOD", "d");
+        strUri = strUri.concat("&mode=" + mode);
 
         Uri gmmIntentUri = Uri.parse(strUri);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
+        isOpeningNavigation = true;
         finish();
 
+    }
+
+    public void finish() {
+        super.finish();
+        if(!isOpeningNavigation) {
+            overridePendingTransition(R.transition.slide_in_left, R.transition.slide_out_right);
+        }
     }
 }

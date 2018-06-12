@@ -7,9 +7,21 @@
         <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@transition/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@transition/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@transition/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@transition/slide_out_right</item>
+    </style>
+
     <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="android:colorButtonNormal">@color/colorAccent</item>
         <item name="android:textColor">@color/colorPrimaryLight</item>
+    </style>
+
+    <style name="MenuButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:colorButtonNormal">@android:color/white</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="SecondaryButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">

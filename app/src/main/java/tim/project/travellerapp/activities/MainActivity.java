@@ -68,22 +68,26 @@ public class MainActivity extends AppCompatActivity {
     public void onToVisitClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ToVisitActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
     }
 
     public void onVisitedClick(View view) {
         Intent intent = new Intent(getApplicationContext(), VisitedActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
     }
 
 
     public void showMapClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ToVisitMapsActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
     }
 
     public void addNewPlaceClick(View view) {
 
         Intent intent = new Intent(getApplicationContext(), AddNewPlaceMapsActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
     }
 }

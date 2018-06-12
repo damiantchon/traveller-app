@@ -1,7 +1,11 @@
 package tim.project.travellerapp.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -11,9 +15,6 @@ import android.widget.Toast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import tim.project.travellerapp.Constants;
 import tim.project.travellerapp.R;
 import tim.project.travellerapp.clients.ApiClient;
 import tim.project.travellerapp.helpers.ApiHelper;
@@ -23,10 +24,39 @@ import static tim.project.travellerapp.helpers.AuthenticationHelper.clearSharedP
 
 public class SplashActivity extends AppCompatActivity {
 
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final ConnectivityManager connMgr = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            final android.net.NetworkInfo wifi = connMgr
+                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+            final android.net.NetworkInfo mobile = connMgr
+                    .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if (wifi.isAvailable() || mobile.isAvailable()) {
+                setContentView(R.layout.activity_splash);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                if (!preferences.getString("Token", "Empty").equals("Empty")) {
+                    tokenLogin(preferences.getLong("UserId", 0L), preferences.getString("Token", null));
+                }
+            } else {
+                Toast.makeText(context, "Not Avaliable", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+
+        this.registerReceiver(mReceiver, filter);
+
         setContentView(R.layout.activity_splash);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if (!preferences.getString("Token", "Empty").equals("Empty")) {
@@ -51,6 +81,8 @@ public class SplashActivity extends AppCompatActivity {
                     Toast.makeText(SplashActivity.this, "Logged in as " + preferences.getString("Username", "noone - that shouldn't be possible!"), Toast.LENGTH_SHORT).show();
                     gotoMain();
                 } else {
+                    Toast.makeText(SplashActivity.this, "Token expired!", Toast.LENGTH_SHORT).show();
+                    clearSharedPreferences(getApplicationContext());
                     gotoLogin();
                 }
             }
@@ -58,11 +90,16 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<UserDetails> call, @NonNull Throwable t) {
                 //TODO Clear preference
-                clearSharedPreferences(getApplicationContext());
-
+                Toast.makeText(SplashActivity.this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
                 gotoLogin();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
     }
 
     public void gotoMain() {
