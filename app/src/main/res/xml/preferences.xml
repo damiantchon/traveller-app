@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <tim.project.travellerapp.preferences.CustomPreferenceCategory
-        android:key="general_category"
-        android:title="@string/settings_general_category">
-
-    <ListPreference
-        android:defaultValue="d"
-        android:entries="@array/travelling_method_keys"
-        android:entryValues="@array/travelling_method_values"
-        android:key="TRAVELING_METHOD"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/settings_change_traveling_method_title" />
-    </tim.project.travellerapp.preferences.CustomPreferenceCategory>
-
-    <tim.project.travellerapp.preferences.CustomPreferenceCategory
+        <tim.project.travellerapp.preferences.CustomPreferenceCategory
         android:key="user_category"
         android:title="@string/settings_user_category">
 

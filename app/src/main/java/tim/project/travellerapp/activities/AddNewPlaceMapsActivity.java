@@ -7,6 +7,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
@@ -54,7 +57,7 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
         checkForPermisions();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -158,8 +161,22 @@ public class AddNewPlaceMapsActivity extends FragmentActivity implements OnMapRe
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        Intent intent = new Intent(getApplicationContext(), AddNewPlaceActivity.class);
-        startActivity(intent);
+
+        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
+
+        Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), AddNewPlaceActivity.class);
+                intent.putExtra(getString(R.string.ADD_NEW_PLACE_LATITUDE), latLng.latitude);
+                intent.putExtra(getString(R.string.ADD_NEW_PLACE_LONGITUDE), latLng.longitude);
+                startActivity(intent);
+                marker.remove();
+            }
+        }, 700);
+
     }
 
     public void finish() {

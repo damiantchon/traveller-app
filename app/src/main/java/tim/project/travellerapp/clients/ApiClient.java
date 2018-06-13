@@ -44,9 +44,6 @@ public interface ApiClient {
     @POST("/visit/add/en")
     Call<List<Visit>> addNewVisit(@Body NewVisit newVisit, @Header("Token") String token);
 
-    @POST("/place/new/en")
-    Call<Void> addNewPlace(@Body NewPlace newPlace, @Header("Token") String token);
-
     @GET("/place/allVisitedPlaces/{userId}")
     Call<List<Place>> getVisitedPlaces(@Path("userId") Long userId, @Header("Token") String token);
 
@@ -64,4 +61,7 @@ public interface ApiClient {
 
     @DELETE("/visit/deleteNotVisitedPlace/{visitId}/{userId}/en")
     Call<Void> deleteNotVisitedVisit(@Path("visitId") long visitId, @Path("userId") long userId, @Header("Token") String token);
+
+    @POST("/place/new/en")
+    Call<Void> addNewPlace(@Body NewPlace newPlace, @Header("Token") String token);
 }

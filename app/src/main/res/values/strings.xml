@@ -2,6 +2,9 @@
     <!-- INTER-INTENT COMMUNICATION - ! DON'T LOCALISE !-->
     <string name="PLACE_TO_VISIT_TITLE">tim.project.travellerapp.PLACE_TO_VISIT_TITLE</string>
     <string name="PLACE_TO_VISIT_LOCALISATION">tim.project.travellerapp.PLACE_TO_VISIT_LOCALISATION</string>
+    <string name="ADD_NEW_PLACE_LATITUDE">tim.project.travellerapp.ADD_NEW_PLACE_LATITUDE</string>
+    <string name="ADD_NEW_PLACE_LONGITUDE">tim.project.travellerapp.ADD_NEW_PLACE_LONGITUDE</string>
+
 
     <string name="app_name">Traveller</string>
     <string name="places_to_visit_toolbar">My places to visit</string>
@@ -41,6 +44,13 @@
 
     <!--Visited Places -->
     <string name="visited_places_date_description">Visit date:</string>
+
+    <!--Add new place-->
+    <string name="add_new_place_toolbar_title">Add new place</string>
+    <string name="add_new_place_name_hint">Name</string>
+    <string name="add_new_place_address_hint">Address</string>
+    <string name="add_new_place_description_hint">Description</string>
+    <string name="add_new_place_add_button">Add</string>
 
     <!--Settings-->
     <string name="action_settings">Settings</string>

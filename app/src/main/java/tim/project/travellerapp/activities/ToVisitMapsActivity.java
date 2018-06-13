@@ -83,8 +83,6 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
 
         fab.setOnClickListener(v -> {
             if(!isFabOpen) {
-                Toast.makeText(this, "Test!", Toast.LENGTH_SHORT).show();
-
                 showFabMenu();
             } else {
                 closeFabMenu();
