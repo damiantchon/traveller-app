@@ -33,6 +33,9 @@ public class AddNewPlaceActivity extends AppCompatActivity {
     @BindView(R.id.new_place_address)
     EditText addressEditText;
 
+    @BindView(R.id.new_place_city)
+    EditText cityEditText;
+
     @BindView(R.id.new_place_description)
     EditText descriptionEditText;
 
@@ -71,42 +74,48 @@ public class AddNewPlaceActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
 
         String street = bestMatch.getThoroughfare();
-        //String postalCode = bestMatch.getPostalCode();
         String city = bestMatch.getLocality();
-        if (street == null) street = "STREET";
+
+        if (street == null) street = "";
         //if (postalCode == null) postalCode = "POSTAL_CODE";
-        if (city == null) city = "CITY";
-        String address = street+ ", " + city;
-        addressEditText.setText(address);
+        if (city == null) city = "";
+
+        addressEditText.setText(street);
+        cityEditText.setText(city);
 
     }
 
     public void onAddClick(View view) {
         String name = nameEditText.getText().toString();
         String address = addressEditText.getText().toString();
+        String city = cityEditText.getText().toString();
         String description = descriptionEditText.getText().toString();
         String latitude = latitudeEditText.getText().toString();
         String longitude = longitudeEditText.getText().toString();
 
-        int result = checkInputs(name, address, latitude, longitude);
+        int result = checkInputs(name, address, city, latitude, longitude);
 
         switch (result) {
             case 1: // Name empty
                 Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show();
                 break;
             case 2: // Address empty
-                Toast.makeText(this, "Address cannot be empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Address and city cannot be empty!", Toast.LENGTH_SHORT).show();
                 break;
             case 3: // Latitude must be between - 90 and 90
-                Toast.makeText(this, "Address cannot be empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Latitude must be between -90 and 90!", Toast.LENGTH_SHORT).show();
                 break;
             case 4: // Longitude must be between - 180 and 180
-                Toast.makeText(this, "Address cannot be empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Longitude must be between -180 and 180!", Toast.LENGTH_SHORT).show();
                 break;
             case 0: // Inputs correct
+
+                String combinedAdress = "";
+                combinedAdress = combinedAdress.concat(address).concat(", ").concat(city);
 
                 String gps = GpsHelper.encodeStringLatLng(latitude, longitude);
 
@@ -114,7 +123,7 @@ public class AddNewPlaceActivity extends AppCompatActivity {
                 Long userId = preferences.getLong("UserId", 0L);
                 String token = preferences.getString("Token", null);
 
-                NewPlace newPlace = new NewPlace(name, address, gps, description, userId);
+                NewPlace newPlace = new NewPlace(name, combinedAdress, gps, description, userId);
 
                 ApiClient client = ApiHelper.getApiClient();
                 Call<Void> call = client.addNewPlace(newPlace, token);
@@ -144,13 +153,14 @@ public class AddNewPlaceActivity extends AppCompatActivity {
         return true;
     }
 
-    private int checkInputs(String name, String address, String latitude, String longitude) {
+    private int checkInputs(String name, String address, String city, String latitude, String longitude) {
 
         double latitudeDouble = Double.parseDouble(latitude);
         double longitudeDouble = Double.parseDouble(longitude);
 
         if(name.length() == 0) return 1;
         else if(address.length() == 0) return 2;
+        else if(city.length() == 0) return 2;
         else if(latitudeDouble > 90 || latitudeDouble < -90) return 3;
         else if(longitudeDouble > 180 || latitudeDouble < -180) return 4;
         else return 0;

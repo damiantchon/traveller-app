@@ -48,7 +48,8 @@
     <!--Add new place-->
     <string name="add_new_place_toolbar_title">Add new place</string>
     <string name="add_new_place_name_hint">Name</string>
-    <string name="add_new_place_address_hint">Address</string>
+    <string name="add_new_place_address_hint">Street</string>
+    <string name="add_new_place_city_hint">City</string>
     <string name="add_new_place_description_hint">Description</string>
     <string name="add_new_place_add_button">Add</string>
 
