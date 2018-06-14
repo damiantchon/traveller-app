@@ -21,7 +21,8 @@
         android:tint="@color/colorPrimaryLight"
         app:pressedTranslationZ="12dp"
         android:src="@drawable/ic_car"
-        android:onClick="onDriveClick" />
+        android:onClick="onDriveClick"
+        app:borderWidth="0dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab2"
@@ -36,7 +37,8 @@
         app:elevation="6dp"
         app:pressedTranslationZ="12dp"
         android:src="@drawable/ic_bike"
-        android:onClick="onBikeClick" />
+        android:onClick="onBikeClick"
+        app:borderWidth="0dp"/>
 
 
 
@@ -53,7 +55,8 @@
         android:tint="@color/colorPrimaryLight"
         app:pressedTranslationZ="12dp"
         android:src="@drawable/ic_walk"
-        android:onClick="onWalkClick"/>
+        android:onClick="onWalkClick"
+        app:borderWidth="0dp"/>
 
 
     <android.support.design.widget.FloatingActionButton

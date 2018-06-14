@@ -2,4 +2,10 @@
 <resources>
     <integer name="action_visited_id">1</integer>
     <integer name="action_delete_id">2</integer>
+
+    <integer name="action_add_photo_visited_id">1</integer>
+    <integer name="action_delete_visited_id">2</integer>
+
+    <integer name="camera_request_code">1</integer>
+    <integer name="gallery_request_code">2</integer>
 </resources>

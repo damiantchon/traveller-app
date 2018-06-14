@@ -38,12 +38,16 @@
     <string name="show_on_map_button">Show all places on map</string>
 
     <!--Places to visit -->
-
     <string name="action_visited">Mark as visited</string>
     <string name="action_delete">Remove</string>
 
+
     <!--Visited Places -->
     <string name="visited_places_date_description">Visit date:</string>
+
+    <string name="action_add_photo_visited">Add photo</string>
+    <string name="action_clear_history_visited">Clear history</string>
+
 
     <!--Add new place-->
     <string name="add_new_place_toolbar_title">Add new place</string>

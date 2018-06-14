@@ -15,6 +15,7 @@ import tim.project.travellerapp.models.Place;
 import tim.project.travellerapp.models.User;
 import tim.project.travellerapp.models.UserDetails;
 import tim.project.travellerapp.models.Visit;
+import tim.project.travellerapp.models.request_body_models.NewPhoto;
 import tim.project.travellerapp.models.request_body_models.NewPlace;
 import tim.project.travellerapp.models.request_body_models.NewVisit;
 import tim.project.travellerapp.models.request_body_models.PasswordChange;
@@ -56,6 +57,8 @@ public interface ApiClient {
     @GET("/visit/myNotVisitedPlaces/{userId}")
     Call<List<Visit>> getNotVisitedVisits(@Path("userId") Long userId, @Header("Token") String token);
 
+
+    //Zmienić na setAsVisited!
     @PUT("/visit/selectPlaceAsVisited/en")
     Call<Void> setVisitAsVisited(@Body VisitVisited visitVisited, @Header("Token") String token);
 
@@ -64,4 +67,10 @@ public interface ApiClient {
 
     @POST("/place/new/en")
     Call<Void> addNewPlace(@Body NewPlace newPlace, @Header("Token") String token);
+
+    @PUT("/visit/clearHistory/{userId}")
+    Call<Void> clearVisitHistory(@Path("userId")Long userId, @Header("Token") String token);
+
+    @POST("/photo/add")
+    Call<Void> addNewPhoto(@Body NewPhoto newPhoto, @Header("Token") String token);
 }

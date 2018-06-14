@@ -105,7 +105,7 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
         fab2.setEnabled(true);
         fab3.animate().translationY(0).setDuration(300).alpha(1);
         fab3.setEnabled(true);
-        fab.animate().alpha(0.5f);
+        fab.animate().alpha(0.5f).rotation(-180);
     }
 
     private void closeFabMenu(){
@@ -116,7 +116,7 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
         fab2.setEnabled(false);
         fab3.animate().translationY(90).setDuration(300).alpha(0);
         fab3.setEnabled(false);
-        fab.animate().alpha(1f);
+        fab.animate().alpha(1f).rotation(0);
     }
 
 

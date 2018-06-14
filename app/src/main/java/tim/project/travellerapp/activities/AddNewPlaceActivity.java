@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -56,6 +57,7 @@ public class AddNewPlaceActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.add_new_place_toolbar_title);
 
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -135,7 +137,7 @@ public class AddNewPlaceActivity extends AppCompatActivity {
                             Toast.makeText(AddNewPlaceActivity.this, "New place added successfully!", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(AddNewPlaceActivity.this, "Shit happened: " + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddNewPlaceActivity.this, "Token expired - please restart application!" + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override

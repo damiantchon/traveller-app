@@ -121,7 +121,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
                         @Override
                         public void onFailure(@NonNull Call<List<Visit>> call, @NonNull Throwable t) {
-                            Toast.makeText(ToVisitActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -132,7 +132,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
             @Override
             public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
-                Toast.makeText(ToVisitActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -153,8 +153,6 @@ public class ToVisitActivity extends AppCompatActivity  {
             long visitId = visitedPlaceList.get(item.getGroupId()).getVisitId();
 
             VisitVisited visitVisited = new VisitVisited(timestamp, visitId, userId);
-
-            Toast.makeText(this, String.valueOf(userId) + ", " + String.valueOf(visitId) + ", " + String.valueOf(timestamp), Toast.LENGTH_SHORT).show();
 
             String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Token", null);
             Call<Void> call = client.setVisitAsVisited(visitVisited, token);
@@ -177,7 +175,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    Toast.makeText(ToVisitActivity.this, "Something went really wrong :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
                 }
             });
         } else if (item.getItemId() == getResources().getInteger(R.integer.action_delete_id)) {
@@ -206,7 +204,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    Toast.makeText(ToVisitActivity.this, "Something went really wrong :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
                 }
             });
         }

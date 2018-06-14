@@ -1,7 +1,9 @@
 package tim.project.travellerapp.adapters;
 
+import android.content.res.Resources;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,7 @@ public class VisitedAdapter extends RecyclerView.Adapter<VisitedAdapter.VisitedV
         this.visitedPlaceList = visitedPlaces;
     }
 
-    public static class VisitedViewHolder extends RecyclerView.ViewHolder {
+    public static class VisitedViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         @BindView(R.id.card_view_place_visited_item)
         CardView cardViewPlaceVisitedItem;
 
@@ -41,8 +43,16 @@ public class VisitedAdapter extends RecyclerView.Adapter<VisitedAdapter.VisitedV
         public VisitedViewHolder(View viewItem) {
             super(viewItem);
             ButterKnife.bind(this, viewItem);
+
+            itemView.setOnCreateContextMenuListener(this);
         }
 
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            Resources resources = v.getResources();
+
+            menu.add(this.getAdapterPosition(), resources.getInteger(R.integer.action_add_photo_visited_id), 0, resources.getString(R.string.action_add_photo_visited));
+        }
     }
 
     @Override
@@ -66,7 +76,7 @@ public class VisitedAdapter extends RecyclerView.Adapter<VisitedAdapter.VisitedV
     private String getDate(long timeStamp){
 
         try{
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss MM/dd/yyyy", Locale.US);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
             Date netDate = (new Date(timeStamp));
             return sdf.format(netDate);
         }
