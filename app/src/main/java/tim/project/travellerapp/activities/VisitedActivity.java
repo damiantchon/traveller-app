@@ -158,7 +158,7 @@ public class VisitedActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(@NonNull Call<List<Visit>> call, @NonNull Throwable t) {
-                            Toast.makeText(VisitedActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VisitedActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                         }
                     });
                     // FIN
@@ -169,7 +169,7 @@ public class VisitedActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
-                Toast.makeText(VisitedActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VisitedActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -196,7 +196,7 @@ public class VisitedActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.code() == 200) {
-                            Toast.makeText(VisitedActivity.this, "History cleared successfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VisitedActivity.this, getString(R.string.history_cleared_successfully), Toast.LENGTH_SHORT).show();
                             visitedPlaceList.clear();
                             arrayList.clear();
                             mRecyclerView.getAdapter().notifyDataSetChanged();
@@ -208,11 +208,11 @@ public class VisitedActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(VisitedActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VisitedActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
-                Toast.makeText(VisitedActivity.this, "No history to clear!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VisitedActivity.this, getString(R.string.no_history_to_clear), Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
@@ -236,10 +236,10 @@ public class VisitedActivity extends AppCompatActivity {
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
-        pictureDialog.setTitle("Select Action");
+        pictureDialog.setTitle(getString(R.string.select_action));
         String[] pictureDialogItems = {
-                "Select photo from gallery",
-                "Capture photo from camera"};
+                getString(R.string.select_from_gallery),
+                getString(R.string.select_from_camera)};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -273,7 +273,6 @@ public class VisitedActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if (photoFile != null) {
-            Toast.makeText(this, photoFile.toString(), Toast.LENGTH_SHORT).show();
             Uri photoURI = FileProvider.getUriForFile(this, "tim.project.travellerapp.fileprovider", photoFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
             startActivityForResult(intent, CAMERA);
@@ -351,17 +350,17 @@ public class VisitedActivity extends AppCompatActivity {
             View dialogView = inflater.inflate(R.layout.dialog_display_photo_to_add, null);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setMessage("Accept image")
+                    .setTitle(getString(R.string.accept_photo_title))
                     .setView(dialogView)
                     //.setView(inflater.inflate(R.layout.dialog_display_photo_to_add, true))
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok_string), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             SendBitmapToBackendTask sendBitmapToBackendTask = new SendBitmapToBackendTask(mChoosenPlace);
                             sendBitmapToBackendTask.execute(bitmap);
                         }
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.cancel_button), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             //Cancel
@@ -503,7 +502,7 @@ public class VisitedActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if(response.code() == 200) {
-                        Toast.makeText(VisitedActivity.this, "Photo updated succesfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VisitedActivity.this, getString(R.string.photo_uploaded_successfully), Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(VisitedActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
@@ -511,7 +510,7 @@ public class VisitedActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(VisitedActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VisitedActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                 }
             });
 

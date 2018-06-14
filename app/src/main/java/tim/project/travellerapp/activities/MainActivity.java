@@ -1,7 +1,9 @@
 package tim.project.travellerapp.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -46,7 +48,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
                 break;
             case R.id.about:
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.about_title))
+                        .setMessage(getString(R.string.about_information))
+                        .setNegativeButton(getString(R.string.cancel_button), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 //Intent settings = new Intent(this, SettingsActivity.class);
                 //startActivity(settings);
                 break;

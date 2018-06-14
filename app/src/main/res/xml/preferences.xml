@@ -12,10 +12,10 @@
         </tim.project.travellerapp.preferences.ChangePasswordPreference>
 
         <tim.project.travellerapp.preferences.DeleteAccountPreference
-            android:dialogMessage="Are you sure? (This action is not reversible!)"
+            android:dialogMessage="@string/delete_account_message"
             android:dialogTitle="@string/settings_delete_account_title"
-            android:negativeButtonText="No"
-            android:positiveButtonText="Yes"
+            android:negativeButtonText="@string/no_string"
+            android:positiveButtonText="@string/yes_string"
             android:title="@string/settings_delete_account_title">
 
         </tim.project.travellerapp.preferences.DeleteAccountPreference>

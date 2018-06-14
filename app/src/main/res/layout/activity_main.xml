@@ -70,6 +70,8 @@
         android:onClick="showMapClick"
         android:text="@string/show_on_map_button"
         android:theme="@style/MenuButtonStyle"
+        android:enabled="false"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

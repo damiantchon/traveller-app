@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                Toast.makeText(RegisterActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,getString(R.string.no_server_connection),Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -2,54 +2,71 @@
     <!-- INTER-INTENT COMMUNICATION - ! DON'T LOCALISE !-->
     <string name="PLACE_TO_VISIT_TITLE">tim.project.travellerapp.PLACE_TO_VISIT_TITLE</string>
     <string name="PLACE_TO_VISIT_LOCALISATION">tim.project.travellerapp.PLACE_TO_VISIT_LOCALISATION</string>
+    <string name="ADD_NEW_PLACE_LATITUDE">tim.project.travellerapp.ADD_NEW_PLACE_LATITUDE</string>
+    <string name="ADD_NEW_PLACE_LONGITUDE">tim.project.travellerapp.ADD_NEW_PLACE_LONGITUDE</string>
+
 
     <string name="app_name">Traveller</string>
-    <string name="places_to_visit_toolbar">My places to visit</string>
-    <string name="visited_places_toolbar">My visited places</string>
+    <string name="places_to_visit_toolbar">Moje miejsca do odwiedzenia</string>
+    <string name="visited_places_toolbar">Moje odwiedzone miejsca</string>
 
     <!-- Login -->
     <string name="login_hint">login</string>
-    <string name="password_hint">password</string>
-    <string name="signin_button">Sign In</string>
-    <string name="signup_link">Register</string>
+    <string name="password_hint">hasło</string>
+    <string name="signin_button">Zaloguj</string>
+    <string name="signup_link">Zarejestruj</string>
 
-    <string name="login_correct">Logged in successfully!</string>
-    <string name="login_empty">You need to enter login and password!</string>
-    <string name="login_wrong_credentials">Wrong username or password!</string>
+    <string name="login_correct">Zalogowano pomyślnie!</string>
+    <string name="login_empty">Musisz wpisać login i hasło!</string>
+    <string name="login_wrong_credentials">Blędny login lub hasło!</string>
 
     <!-- Register -->
     <string name="register_login_hint">login</string>
-    <string name="register_password_hint">password</string>
-    <string name="register_repassword_hint">confirm password</string>
-    <string name="register_title">Registration</string>
-    <string name="back_button">Back</string>
+    <string name="register_password_hint">hasło</string>
+    <string name="register_repassword_hint">potwierdź hasło</string>
+    <string name="register_title">Rejestracja</string>
+    <string name="back_button">Cofnij</string>
 
-    <string name="user_duplicate">Username taken!</string>
-    <string name="user_created">User created successfully!</string>
+    <string name="user_duplicate">Login zajęty!</string>
+    <string name="user_created">Użytkownik pomyślnie utworzony!</string>
 
     <!-- Main -->
 
-    <string name="add_new_place_button">Add new place</string>
-    <string name="to_visit_button">Places to visit</string>
-    <string name="visited_button">Show my visited places</string>
+    <string name="add_new_place_button">Dodaj nowe miejsce</string>
+    <string name="to_visit_button">Miejsca do odwiedzenia</string>
+    <string name="visited_button">Odwiedzone miejsca</string>
     <string name="show_on_map_button">Show all places on map</string>
 
     <!--Places to visit -->
+    <string name="action_visited">Przenieś do odwiedzonych</string>
+    <string name="action_delete">Usuń</string>
 
-    <string name="action_visited">Mark as visited</string>
-    <string name="action_delete">Remove</string>
 
     <!--Visited Places -->
-    <string name="visited_places_date_description">Visit date:</string>
+    <string name="visited_places_date_description">Data odwiedzin:</string>
+
+    <string name="action_add_photo_visited">Dodaj zdjęcie</string>
+    <string name="action_clear_history_visited">Wyczyść historię</string>
+
+
+    <!--Add new place-->
+    <string name="title_activity_add_new_place_maps">Add new place</string>
+    <string name="title_activity_to_visit_maps">Places to visit</string>
+    <string name="add_new_place_toolbar_title">Dodaj nowe miejsce</string>
+    <string name="add_new_place_name_hint">Nazwa</string>
+    <string name="add_new_place_address_hint">Ulica</string>
+    <string name="add_new_place_city_hint">Miasto</string>
+    <string name="add_new_place_description_hint">Opis</string>
+    <string name="add_new_place_add_button">Dodaj</string>
 
     <!--Settings-->
-    <string name="action_settings">Settings</string>
-    <string name="action_about">About</string>
-    <string name="action_logout">Logout</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="succesfull_logout">Logged out successfully!</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_about">O aplikacji</string>
+    <string name="action_logout">Wyloguj</string>
+    <string name="title_activity_settings">Ustawienia</string>
+    <string name="succesfull_logout">Wylogowano pomyślnie!</string>
 
-    <string name="settings_change_traveling_method_title">Travelling method</string>
+    <string name="settings_change_traveling_method_title">Choose travelling method</string>
 
     <string-array name="travelling_method_keys">
         <item>Driving</item>
@@ -62,33 +79,52 @@
         <item>w</item>
     </string-array>
 
-    <string name="settings_user_category">Account settings</string>
+    <string name="settings_user_category">Ustawienia konta</string>
     <string name="settings_general_category">General settings</string>
 
-    <string name="settings_change_password_title">Change password</string>
-    <string name="settings_delete_account_title">Delete account</string>
+    <string name="settings_change_password_title">Zmień hasło</string>
+    <string name="settings_delete_account_title">Usuń konto</string>
 
-    <string name="setting_old_password_hint">Old password</string>
-    <string name="setting_new_password_hint">New password</string>
-    <string name="setting_new2_password_hint">Confirm new password</string>
+    <string name="setting_old_password_hint">Stare hasło</string>
+    <string name="setting_new_password_hint">Nowe hasło</string>
+    <string name="setting_new2_password_hint">Potwierdź nowe hasło</string>
 
-    <string name="settings_passwords_differ">Entered passwords are different!</string>
+    <string name="settings_passwords_differ">Wpisane hasła są różne!</string>
 
-    <string name="preference_title_change_password">Change password</string>
-    <string name="settings_password_changed">Password changed successfully!</string>
-    <string name="settings_password_not_changed">Old password invalid!</string>
+    <string name="preference_title_change_password">Zmień hasło</string>
+    <string name="settings_password_changed">Hasło zmienione pomyślnie!</string>
+    <string name="settings_password_not_changed">Wpisano błędne stare hasło!</string>
 
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
+    <string name="cancel_button">Anuluj</string>
 
-    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="yes_string">Tak</string>
+    <string name="no_string">Nie</string>
 
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
+    <string name="delete_account_message">Jesteś pewien? (Ta akcja jest nieodwracalna!)</string>
 
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_to_visit_map">Map</string>
-    <string name="title_activity_to_visit_maps">Map</string>
-    <string name="title_activity_add_new_place_maps">Map</string>
+    <string name="about_title">O aplikacji</string>
+    <string name="about_information">Aplikacja mobilna "Traveller" na zaliczenie projektu z TIM. \n\nWykonał Damian Tchoń I7B3S4</string>
 
+    <string name="empty_name_information">Nazwa nie może być pusta!</string>
+    <string name="empty_adress_information">Ulica i miasto nie mogą być puste!</string>
+    <string name="latitude_information">Szerokość geograficzna musi być pomiędzy -90 a 90!</string>
+    <string name="longitude_information">Długość geograficzna musi być pomiędzy -180 a 180!</string>
+
+    <string name="new_place_added_succesfully">Miejsce dodano pomyślnie!</string>
+    <string name="no_server_connection">Brak połączenia z serwerem!</string>
+    <string name="logged_in_as">Zalogowano jako</string>
+
+    <string name="history_cleared_successfully">Pomyślnie wyczyszczono historię!</string>
+    <string name="no_history_to_clear">Historia odwiedzonych miejsc jest już pusta!</string>
+
+    <string name="select_action">Wybierz akcję</string>
+    <string name="select_from_gallery">Wybierz zdjęcie z galerii</string>
+    <string name="select_from_camera">Zrób zdjęcie</string>
+
+    <string name="photo_uploaded_successfully">Zdjęcie przesłano pomyślnie!</string>
+
+    <string name="visited_exclemation">odwiedzony !</string>
+
+    <string name="accept_photo_title">Zaakceptuj zdjęcie</string>
 </resources>
+

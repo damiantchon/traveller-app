@@ -103,16 +103,16 @@ public class AddNewPlaceActivity extends AppCompatActivity {
 
         switch (result) {
             case 1: // Name empty
-                Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.empty_name_information), Toast.LENGTH_SHORT).show();
                 break;
             case 2: // Address empty
-                Toast.makeText(this, "Address and city cannot be empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.empty_adress_information), Toast.LENGTH_SHORT).show();
                 break;
             case 3: // Latitude must be between - 90 and 90
-                Toast.makeText(this, "Latitude must be between -90 and 90!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.latitude_information), Toast.LENGTH_SHORT).show();
                 break;
             case 4: // Longitude must be between - 180 and 180
-                Toast.makeText(this, "Longitude must be between -180 and 180!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.longitude_information), Toast.LENGTH_SHORT).show();
                 break;
             case 0: // Inputs correct
 
@@ -134,7 +134,7 @@ public class AddNewPlaceActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.code() == 200) {
-                            Toast.makeText(AddNewPlaceActivity.this, "New place added successfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddNewPlaceActivity.this, getString(R.string.new_place_added_succesfully), Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
                             Toast.makeText(AddNewPlaceActivity.this, "Token expired - please restart application!" + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
@@ -142,7 +142,7 @@ public class AddNewPlaceActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(AddNewPlaceActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNewPlaceActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;

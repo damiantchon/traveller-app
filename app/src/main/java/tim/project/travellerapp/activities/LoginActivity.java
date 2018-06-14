@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<UserDetails> call, @NonNull Throwable t) {
-                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, getString(R.string.no_server_connection),Toast.LENGTH_SHORT).show();
             }
         });
     }

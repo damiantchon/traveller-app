@@ -78,7 +78,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<UserDetails> call, @NonNull Response<UserDetails> response) {
                 if (response.code() == 200) {
-                    Toast.makeText(SplashActivity.this, "Logged in as " + preferences.getString("Username", "noone - that shouldn't be possible!"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SplashActivity.this, getString(R.string.logged_in_as) + " " + preferences.getString("Username", "noone - that shouldn't be possible!"), Toast.LENGTH_SHORT).show();
                     gotoMain();
                 } else {
                     Toast.makeText(SplashActivity.this, "Token expired!", Toast.LENGTH_SHORT).show();
@@ -90,7 +90,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<UserDetails> call, @NonNull Throwable t) {
                 //TODO Clear preference
-                Toast.makeText(SplashActivity.this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                 gotoLogin();
             }
         });

@@ -50,6 +50,8 @@
 
 
     <!--Add new place-->
+    <string name="title_activity_add_new_place_maps">Add new place</string>
+    <string name="title_activity_to_visit_maps">Places to visit</string>
     <string name="add_new_place_toolbar_title">Add new place</string>
     <string name="add_new_place_name_hint">Name</string>
     <string name="add_new_place_address_hint">Street</string>
@@ -93,17 +95,38 @@
     <string name="settings_password_changed">Password changed successfully!</string>
     <string name="settings_password_not_changed">Old password invalid!</string>
 
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
+    <string name="cancel_button">Cancel</string>
 
-    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="yes_string">Yes</string>
+    <string name="no_string">No</string>
+    <string name="ok_string">Ok</string>
 
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
+    <string name="delete_account_message">Are you sure? (This action is not reversible!)</string>
 
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_to_visit_map">Map</string>
-    <string name="title_activity_to_visit_maps">Map</string>
-    <string name="title_activity_add_new_place_maps">Map</string>
+    <string name="about_title">About</string>
+    <string name="about_information">Aplikacja mobilna "Traveller" na zaliczenie projektu z TIM. \n\nWykonał Damian Tchoń I7B3S4</string>
 
+    <string name="empty_name_information">Name cannot be empty!</string>
+    <string name="empty_adress_information">Address and city cannot be empty!</string>
+    <string name="latitude_information">Latitude must be between -90 and 90!</string>
+    <string name="longitude_information">Longitude must be between -180 and 180!</string>
+
+    <string name="new_place_added_succesfully">New place added successfully!</string>
+
+    <string name="no_server_connection">No server connection!</string>
+    <string name="logged_in_as">Logged in as</string>
+    <string name="history_cleared_successfully">History cleared successfully!</string>
+    <string name="no_history_to_clear">History is alreade clear!</string>
+
+    <string name="select_action">Select action</string>
+    <string name="select_from_gallery">Select photo from gallery</string>
+    <string name="select_from_camera">Capture photo with camera</string>
+
+
+    <string name="photo_uploaded_successfully">Photo updated successfully</string>
+
+
+    <string name="visited_exclemation">odwiedzony !</string>
+
+    <string name="accept_photo_title">Accept image</string>
 </resources>

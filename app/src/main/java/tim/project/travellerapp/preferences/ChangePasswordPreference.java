@@ -99,14 +99,12 @@ public class ChangePasswordPreference extends DialogPreference {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getContext(), "Something went wrong! OMEGALUL", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
 
         } else if (which == DialogInterface.BUTTON_NEGATIVE) {
-            Toast.makeText(getContext(), "LULULULU", Toast.LENGTH_SHORT).show();
-
             preventFromClosing(dialog, false);
 
         }

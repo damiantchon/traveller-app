@@ -121,7 +121,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
                         @Override
                         public void onFailure(@NonNull Call<List<Visit>> call, @NonNull Throwable t) {
-                            Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ToVisitActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -132,7 +132,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
             @Override
             public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
-                Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ToVisitActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -162,7 +162,7 @@ public class ToVisitActivity extends AppCompatActivity  {
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     if(response.code() == 200) {
 
-                        Toast.makeText(ToVisitActivity.this, arrayList.get(item.getGroupId()).getName() + " visited!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ToVisitActivity.this, arrayList.get(item.getGroupId()).getName() + " " + getString(R.string.visited_exclemation), Toast.LENGTH_SHORT).show();
 
                         arrayList.remove(item.getGroupId());
                         visitedPlaceList.remove(item.getGroupId());
@@ -175,7 +175,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToVisitActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                 }
             });
         } else if (item.getItemId() == getResources().getInteger(R.integer.action_delete_id)) {
@@ -204,7 +204,7 @@ public class ToVisitActivity extends AppCompatActivity  {
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    Toast.makeText(ToVisitActivity.this, "No server connection!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToVisitActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                 }
             });
         }

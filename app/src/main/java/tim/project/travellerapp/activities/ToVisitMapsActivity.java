@@ -177,7 +177,7 @@ public class ToVisitMapsActivity extends FragmentActivity implements OnMapReadyC
 
                 @Override
                 public void onFailure(@NonNull Call<List<Place>> call, @NonNull Throwable t) {
-                    Toast.makeText(ToVisitMapsActivity.this, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ToVisitMapsActivity.this, getString(R.string.no_server_connection), Toast.LENGTH_SHORT).show();
                 }
             });
         }
