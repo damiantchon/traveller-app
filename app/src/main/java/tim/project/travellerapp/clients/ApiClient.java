@@ -59,7 +59,7 @@ public interface ApiClient {
 
 
     //Zmienić na setAsVisited!
-    @PUT("/visit/selectPlaceAsVisited/en")
+    @PUT("/visit/setAsVisited/en")
     Call<Void> setVisitAsVisited(@Body VisitVisited visitVisited, @Header("Token") String token);
 
     @DELETE("/visit/deleteNotVisitedPlace/{visitId}/{userId}/en")

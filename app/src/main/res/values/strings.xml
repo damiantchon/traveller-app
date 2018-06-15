@@ -104,7 +104,7 @@
     <string name="delete_account_message">Are you sure? (This action is not reversible!)</string>
 
     <string name="about_title">About</string>
-    <string name="about_information">Aplikacja mobilna "Traveller" na zaliczenie projektu z TIM. \n\nWykonał Damian Tchoń I7B3S4</string>
+    <string name="about_information">Aplikacja mobilna "Traveller" na zaliczenie projektu z TIM.</string>
 
     <string name="empty_name_information">Name cannot be empty!</string>
     <string name="empty_adress_information">Address and city cannot be empty!</string>
